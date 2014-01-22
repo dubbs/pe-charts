@@ -14,7 +14,6 @@ var PEChart = (function ($, baseConfig, userConfig) {
       throw new Error('PEChart requires the base config file: config-base.js');
     }
 
-    this.options = options;
     this.$el = options.el;
 
     this.initialize();
@@ -26,6 +25,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options = this.loadDefaultOptions(this.$el.data('chart-type'));
     options = this.loadSeriesData(options);
     options = this.loadCategoryData(options);
+    options = this.loadCreditsData(options);
     this.$chartContainer.highcharts(options);
   };
 
@@ -38,6 +38,12 @@ var PEChart = (function ($, baseConfig, userConfig) {
     case 'line':
       return baseConfig.prototype.defaultLine;
     }
+  };
+
+  PEChart.prototype.loadCreditsData = function (options) {
+    options.credits = options.credits || {};
+    options.credits.text = this.$el.find('[data-footnote] > *').text();
+    return options;
   };
 
   PEChart.prototype.loadCategoryData = function (options) {
@@ -61,7 +67,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
       var name = ($name.length) ? $name.text() : null;
       // load series data
       var data = [];
-      $this.find('td:not([data-series-name])').each(function () {
+      $this.find('> *:not([data-series-name])').each(function () {
         return data.push({y: parseFloat($(this).text())});
       });
       // create series
