@@ -1,0 +1,14 @@
+{
+  "name": "Progressively Enhanced HighCharts",
+  "version": "0.0.1",
+  "authors": [
+    "Kevin Warrington <kevin.warrington@gmail.com>"
+  ],
+  "description": "Graphing HighCharts from html tables",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.0.3",
+    "highcharts": "~3.0.7"
+  }
+}
