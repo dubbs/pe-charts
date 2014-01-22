@@ -42,7 +42,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
 
   PEChart.prototype.loadCreditsData = function (options) {
     options.credits = options.credits || {};
-    options.credits.text = this.$el.find('[data-footnote] > *').text();
+    options.credits.text = this.$el.find('[data-footnote]').text();
     return options;
   };
 
