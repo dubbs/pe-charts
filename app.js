@@ -23,6 +23,14 @@ var PEChartConfigBase = {
         stacking: 'normal'
       }
     }
+  },
+  bar: {
+    chart: {
+      type: 'bar'
+    }
+  },
+  pie: {
+
   }
 };
 
@@ -30,7 +38,9 @@ var PEChartConfigBase = {
 var PEChartConfigUser = {
   all: {},
   line: {},
-  column_stacked: {}
+  column_stacked: {},
+  bar: {},
+  pie: {}
 };
 
 var PEChart = (function ($, baseConfig, userConfig) {
@@ -84,6 +94,10 @@ var PEChart = (function ($, baseConfig, userConfig) {
       return $.extend(true, defaultAll, this.baseConfig.line, this.userConfig.line);
     case 'column_stacked':
       return $.extend(true, defaultAll, this.baseConfig.column_stacked, this.userConfig.column_stacked);
+    case 'bar':
+      return $.extend(true, defaultAll, this.baseConfig.bar, this.userConfig.bar);
+    case 'pie':
+      return $.extend(true, defaultAll, this.baseConfig.pie, this.userConfig.pie);
     }
   };
 
