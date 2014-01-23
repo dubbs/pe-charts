@@ -47,14 +47,11 @@ var PEChart = (function ($, baseConfig, userConfig) {
   };
 
   PEChart.prototype.loadDefaultOptions = function (chartType) {
-    var options;
+    var defaultAll = $.extend(true, baseConfig.prototype.defaultAll, userConfig.prototype.defaultAll);
     switch (chartType) {
     case 'line':
-      options = baseConfig.prototype.defaultLine;
-      break;
+      return $.extend(true, defaultAll, baseConfig.prototype.defaultLine, userConfig.prototype.defaultLine);
     }
-    options = $.extend(true, {}, baseConfig.prototype.defaultAll, options);
-    return options;
   };
 
   PEChart.prototype.loadCreditsData = function (options) {
