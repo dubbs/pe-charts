@@ -7,6 +7,19 @@ var PEChartConfigBase = {
     },
     title: {
       text: null
+    },
+    legend: {
+      layout: 'vertical',
+      align: 'left',
+      verticalAlign: 'bottom',
+      floating: true,
+      borderWidth: 0
+    },
+    credits: {
+      position: {
+        align: 'left',
+        x: 18
+      }
     }
   },
   line: {
@@ -78,12 +91,20 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options = this.loadSeriesData(options, chartType);
     options = this.loadYAxisTitle(options);
     options = this.loadCreditsData(options);
+    options = this.adjustSpacing(options);
     this.hideTable();
+    this.$el.data('options', options);
     this.$chartContainer.highcharts(options);
   };
 
   PEChart.prototype.hideTable = function () {
     this.$el.hide();
+  };
+
+  PEChart.prototype.adjustSpacing = function (options) {
+    options.legend.y = options.series.length * 15 + 10;
+    options.chart.spacingBottom = options.series.length * 15 + 50;
+    return options;
   };
 
   PEChart.prototype.loadYAxisTitle = function (options) {

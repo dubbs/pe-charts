@@ -52,10 +52,24 @@ $('[data-chart-id]').each(function() {
     config: {
       all: {
         colors: [
-          '#005A9C',
           '#B5B3AE',
+          '#005A9C',
           '#FFFFFF'
-        ]
+        ],
+        xAxis: {
+          lineColor: '#000000',
+          tickWidth: 0
+        },
+        yAxis: {
+          title: {
+            enabled: false
+          }
+        },
+      },
+      line: {
+        yAxis: {
+          gridLineWidth: 0
+        }
       },
       column_stacked: {
         yAxis: {
