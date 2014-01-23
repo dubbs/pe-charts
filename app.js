@@ -24,9 +24,22 @@ var PEChart = (function ($, baseConfig, userConfig) {
     this.addChartContainer();
     options = this.loadDefaultOptions(this.$el.data('chart-type'));
     options = this.loadSeriesData(options);
+    options = this.loadYAxisTitle(options);
     options = this.loadCategoryData(options);
     options = this.loadCreditsData(options);
+    this.hideTable();
     this.$chartContainer.highcharts(options);
+  };
+
+  PEChart.prototype.hideTable = function () {
+    this.$el.hide();
+  };
+
+  PEChart.prototype.loadYAxisTitle = function (options) {
+    options.yAxis = options.yAxis || {};
+    options.yAxis.title = options.yAxis.title || {};
+    options.yAxis.title.text = this.$el.find('[data-yaxis-title]').text();
+    return options;
   };
 
   PEChart.prototype.addChartContainer = function () {
@@ -34,10 +47,14 @@ var PEChart = (function ($, baseConfig, userConfig) {
   };
 
   PEChart.prototype.loadDefaultOptions = function (chartType) {
+    var options;
     switch (chartType) {
     case 'line':
-      return baseConfig.prototype.defaultLine;
+      options = baseConfig.prototype.defaultLine;
+      break;
     }
+    options = $.extend(true, {}, baseConfig.prototype.defaultAll, options);
+    return options;
   };
 
   PEChart.prototype.loadCreditsData = function (options) {

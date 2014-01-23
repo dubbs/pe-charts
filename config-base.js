@@ -6,6 +6,15 @@ var PEChartConfigBase = (function () {
 
   function PEChartConfigBase() {}
 
+  PEChartConfigBase.prototype.defaultAll = {
+    chart: {
+      backgroundColor: null
+    },
+    title: {
+      text: null
+    }
+  };
+
   PEChartConfigBase.prototype.defaultLine = {
     chart: {
       type: 'line'
