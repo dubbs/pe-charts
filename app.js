@@ -1,5 +1,38 @@
 /*jslint indent:2, vars:true */
 
+var PEChartConfigBase = {
+  all: {
+    chart: {
+      backgroundColor: null
+    },
+    title: {
+      text: null
+    }
+  },
+  line: {
+    chart: {
+      type: 'line'
+    }
+  },
+  column_stacked: {
+    chart: {
+      type: 'column'
+    },
+    plotOptions: {
+      column: {
+        stacking: 'normal'
+      }
+    }
+  }
+};
+
+/* DO NOT CHANGE THESE VALUES */
+var PEChartConfigUser = {
+  all: {},
+  line: {},
+  column_stacked: {}
+};
+
 var PEChart = (function ($, baseConfig, userConfig) {
 
   'use strict';
@@ -10,11 +43,9 @@ var PEChart = (function ($, baseConfig, userConfig) {
       throw new Error('PEChart requires Highcharts');
     }
 
-    if (!baseConfig) {
-      throw new Error('PEChart requires the base config file: config-base.js');
-    }
-
     this.$el = options.el;
+    this.userConfig = $.extend(true, userConfig, options.config);
+    this.baseConfig = baseConfig;
 
     this.initialize();
   }
@@ -47,10 +78,12 @@ var PEChart = (function ($, baseConfig, userConfig) {
   };
 
   PEChart.prototype.loadDefaultOptions = function (chartType) {
-    var defaultAll = $.extend(true, baseConfig.prototype.defaultAll, userConfig.prototype.defaultAll);
+    var defaultAll = $.extend(true, this.baseConfig.all, this.userConfig.all);
     switch (chartType) {
     case 'line':
-      return $.extend(true, defaultAll, baseConfig.prototype.defaultLine, userConfig.prototype.defaultLine);
+      return $.extend(true, defaultAll, this.baseConfig.line, this.userConfig.line);
+    case 'column_stacked':
+      return $.extend(true, defaultAll, this.baseConfig.column_stacked, this.userConfig.column_stacked);
     }
   };
 

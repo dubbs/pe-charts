@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title></title>
-  <link rel="stylesheet" href="example.css" />
+  <link rel="stylesheet" href="../example.css" />
 </head>
 <body>
 
@@ -42,15 +42,21 @@
     </tr>
   </tbody>
 </table>
-<script src="bower_components/jquery/jquery.js"></script>
-<script src="bower_components/highcharts/highcharts.src.js"></script>
-<script src="config-base.js"></script>
-<script src="config-user.js"></script>
-<script src="app.js"></script>
+<script src="../bower_components/jquery/jquery.js"></script>
+<script src="../bower_components/highcharts/highcharts.src.js"></script>
+<script src="../app.js"></script>
 <script>
 $('[data-chart-id]').each(function() {
-  new PEChart({
-    el: $(this)
+  var chart = new PEChart({
+    el: $(this),
+    config: {
+      all: {
+        colors: [
+          '#005A9C',
+          '#B5B3AE'
+        ]
+      }
+    }
   });
 });
 </script>
