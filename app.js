@@ -1,4 +1,4 @@
-/*jslint indent:2, vars:true */
+/*jslint indent:2, vars:true, nomen: true */
 
 var PEChartConfigBase = {
   all: {
@@ -30,7 +30,16 @@ var PEChartConfigBase = {
     }
   },
   pie: {
-
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: false
+        },
+        showInLegend: true
+      }
+    }
   }
 };
 
@@ -61,12 +70,13 @@ var PEChart = (function ($, baseConfig, userConfig) {
   }
 
   PEChart.prototype.initialize = function () {
-    var options;
+    var options, chartType;
+    chartType = this.$el.data('chart-type');
     this.addChartContainer();
-    options = this.loadDefaultOptions(this.$el.data('chart-type'));
-    options = this.loadSeriesData(options);
-    options = this.loadYAxisTitle(options);
+    options = this.loadDefaultOptions(chartType);
     options = this.loadCategoryData(options);
+    options = this.loadSeriesData(options, chartType);
+    options = this.loadYAxisTitle(options);
     options = this.loadCreditsData(options);
     this.hideTable();
     this.$chartContainer.highcharts(options);
@@ -107,6 +117,15 @@ var PEChart = (function ($, baseConfig, userConfig) {
     return options;
   };
 
+  PEChart.prototype.reformatDataForPieChart = function (data, categories) {
+    var pieData = [], i, l;
+    for (i = 0, l = categories.length; i < l; i++) {
+      var category = categories[i];
+      pieData.push([category, data[i]]);
+    }
+    return pieData;
+  };
+
   PEChart.prototype.loadCategoryData = function (options) {
     // load categories
     var categories = [];
@@ -119,7 +138,8 @@ var PEChart = (function ($, baseConfig, userConfig) {
     return options;
   };
 
-  PEChart.prototype.loadSeriesData = function (options) {
+  PEChart.prototype.loadSeriesData = function (options, chartType) {
+    var _this = this;
     options.series = [];
     this.$el.find('[data-series]').each(function () {
       var $this = $(this);
@@ -129,10 +149,15 @@ var PEChart = (function ($, baseConfig, userConfig) {
       // load series data
       var data = [];
       $this.find('> *:not([data-series-name])').each(function () {
-        return data.push({y: parseFloat($(this).text())});
+        return data.push(parseFloat($(this).text()));
       });
+      if (chartType === 'pie') {
+        // pie charts use a different data format, which includes categories
+        data = _this.reformatDataForPieChart(data, options.xAxis.categories);
+      }
       // create series
       options.series.push({
+        type: (chartType === 'pie') ? 'pie' : '',
         name: name,
         data: data
       });
