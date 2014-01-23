@@ -27,6 +27,11 @@ var PEChartConfigBase = {
       type: 'line'
     }
   },
+  column: {
+    chart: {
+      type: 'column'
+    }
+  },
   column_stacked: {
     chart: {
       type: 'column'
@@ -125,6 +130,8 @@ var PEChart = (function ($, baseConfig, userConfig) {
       return $.extend(true, defaultAll, this.baseConfig.line, this.userConfig.line);
     case 'column_stacked':
       return $.extend(true, defaultAll, this.baseConfig.column_stacked, this.userConfig.column_stacked);
+    case 'column':
+      return $.extend(true, defaultAll, this.baseConfig.column, this.userConfig.column);
     case 'bar':
       return $.extend(true, defaultAll, this.baseConfig.bar, this.userConfig.bar);
     case 'pie':

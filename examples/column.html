@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title></title>
+  <link rel="stylesheet" href="../example.css" />
+</head>
+<body>
+
+<table data-chart-id="world_electricity_consumption" data-chart-type="column">
+  <caption>
+    <p data-yaxis-title>(TWH)</p>
+  </caption>
+  <thead>
+    <tr data-categories>
+      <th data-ignore></th>
+      <th>1980</th>
+      <th>1990</th>
+      <th>2010</th>
+      <th>2035 (est)</th>
+    </tr>
+  </thead>
+  <tfoot>
+    <tr>
+      <td colspan="5" data-footnote>Source: OECD / International Energy Agency</td>
+    </tr>
+  </tfoot>
+  <tbody>
+    <tr data-series>
+      <td data-series-name>Non-OECD</td>
+      <td>971</td>
+      <td>3492</td>
+      <td>8825</td>
+      <td>19903</td>
+    </tr>
+    <tr data-series>
+      <td data-series-name>OECD</td>
+      <td>4739</td>
+      <td>6593</td>
+      <td>9618</td>
+      <td>11956</td>
+    </tr>
+  </tbody>
+</table>
+<script src="../bower_components/jquery/jquery.js"></script>
+<script src="../bower_components/highcharts/highcharts.src.js"></script>
+<script src="../app.js"></script>
+<script>
+$('[data-chart-id]').each(function() {
+  var chart = new PEChart({
+    el: $(this),
+    config: {
+      all: {
+        colors: [
+          '#B5B3AE',
+          '#005A9C',
+          '#FFFFFF'
+        ],
+        xAxis: {
+          lineColor: '#000000',
+          tickWidth: 0
+        },
+        yAxis: {
+          title: {
+            enabled: false
+          }
+        },
+      },
+      line: {
+        yAxis: {
+          gridLineWidth: 0
+        }
+      },
+      column_stacked: {
+        yAxis: {
+          stackLabels: {
+            enabled: true
+          }
+        }
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
