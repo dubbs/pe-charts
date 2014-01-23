@@ -30,6 +30,11 @@ var PEChartConfigBase = {
   column: {
     chart: {
       type: 'column'
+    },
+    plotOptions: {
+      column: {
+        stacking: null
+      }
     }
   },
   column_stacked: {
@@ -65,6 +70,7 @@ var PEChartConfigBase = {
 var PEChartConfigUser = {
   all: {},
   line: {},
+  column: {},
   column_stacked: {},
   bar: {},
   pie: {}
