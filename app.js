@@ -105,6 +105,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options = this.adjustSpacing(options);
     options = this.adjustHeight(options);
     options = this.adjustLegend(options);
+    options = this.adjustColumnColoring(options);
     this.hideTable();
     this.$el.data('options', options);
     this.$chartContainer.highcharts(options);
@@ -112,6 +113,15 @@ var PEChart = (function ($, baseConfig, userConfig) {
 
   PEChart.prototype.hideTable = function () {
     this.$el.hide();
+  };
+
+  PEChart.prototype.adjustColumnColoring = function (options) {
+    // set alternating color if only 1 series
+    if (options.chart.type === 'column' && options.series.length === 1) {
+      options.plotOptions.series = options.plotOptions.series || {};
+      options.plotOptions.series.colorByPoint = true;
+    }
+    return options;
   };
 
   PEChart.prototype.adjustHeight = function (options) {
