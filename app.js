@@ -120,9 +120,9 @@ var PEChart = (function ($, baseConfig, userConfig) {
   };
 
   PEChart.prototype.adjustLegend = function (options) {
-    if (this.$el.attr('data-hide-legend') === undefined) {
+    if (this.$el.attr('data-hide-legend') !== undefined) {
       options.legend.enabled = false;
-      options.chart.spacingBottom = 0;
+      options.chart.spacingBottom = 10;
     }
     return options;
   };
