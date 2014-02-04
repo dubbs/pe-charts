@@ -103,6 +103,8 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options = this.loadYAxisTitle(options);
     options = this.loadCreditsData(options);
     options = this.adjustSpacing(options);
+    options = this.adjustHeight(options);
+    options = this.adjustLegend(options);
     this.hideTable();
     this.$el.data('options', options);
     this.$chartContainer.highcharts(options);
@@ -110,6 +112,19 @@ var PEChart = (function ($, baseConfig, userConfig) {
 
   PEChart.prototype.hideTable = function () {
     this.$el.hide();
+  };
+
+  PEChart.prototype.adjustHeight = function (options) {
+    options.chart.height = this.$el.data('height');
+    return options;
+  };
+
+  PEChart.prototype.adjustLegend = function (options) {
+    if (this.$el.attr('data-hide-legend') === undefined) {
+      options.legend.enabled = false;
+      options.chart.spacingBottom = 0;
+    }
+    return options;
   };
 
   PEChart.prototype.adjustSpacing = function (options) {
