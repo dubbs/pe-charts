@@ -1,5 +1,4 @@
-
-# PEChart
+# PE-Chart
 
 This library creates a Highchart from an HTML table:
 
