@@ -87,7 +87,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
     }
 
     this.$el = options.el;
-    this.userConfig = $.extend(true, userConfig, options.config);
+    this.userConfig = $.extend(true, {}, userConfig, options.config);
     this.baseConfig = baseConfig;
 
     this.initialize();
@@ -155,7 +155,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
   };
 
   PEChart.prototype.loadDefaultOptions = function (chartType) {
-    var defaultAll = $.extend(true, this.baseConfig.all, this.userConfig.all);
+    var defaultAll = $.extend(true, {}, this.baseConfig.all, this.userConfig.all);
     switch (chartType) {
     case 'line':
       return $.extend(true, defaultAll, this.baseConfig.line, this.userConfig.line);
