@@ -227,3 +227,20 @@ var PEChart = (function ($, baseConfig, userConfig) {
   return PEChart;
 
 }(this.jQuery, this.PEChartConfigBase, this.PEChartConfigUser));
+
+
+(function($){
+
+  $.fn.pechart = function(config) {  
+
+    return this.each(function() {
+
+      var chart = new PEChart({
+        el: $(this),
+        config: config
+      });
+
+    });
+
+  };
+})(this.jQuery);

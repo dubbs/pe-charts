@@ -2,34 +2,31 @@
 <html>
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title></title>
+  <title>Apple Revenue</title>
   <style type="text/css" media="all">
   body { background: #f6f6f6; }
   </style>
 </head>
 <body>
-
-<table data-chart-id="browser_share" data-chart-type="pie">
+<h1>Apple Revenue</h1>
+<table data-chart-type="column">
+  <caption>
+    <p data-yaxis-title>Revenue in Billions</p>
+  </caption>
   <thead>
     <tr data-categories>
       <th data-ignore></th>
-      <th>Firefox</th>
-      <th>IE</th>
-      <th>Chrome</th>
-      <th>Safari</th>
-      <th>Opera</th>
-      <th>Other</th>
+      <th>2011</th>
+      <th>2012</th>
+      <th>2013</th>
     </tr>
   </thead>
   <tbody>
     <tr data-series>
-      <td data-series-name>Browser Share</td>
-      <td>45.0</td>
-      <td>26.8</td>
-      <td>12.8</td>
-      <td>8.5</td>
-      <td>6.2</td>
-      <td>0.7</td>
+      <td data-series-name>Apple</td>
+      <td>108.6</td>
+      <td>155.97</td>
+      <td>170.87</td>
     </tr>
   </tbody>
 </table>
@@ -37,7 +34,7 @@
 <script src="../bower_components/highcharts-release/highcharts.js"></script>
 <script src="../pechart.js"></script>
 <script>
-$('[data-chart-id]').pechart({
+$('table').pechart({
   all: {
     colors: [
       '#B5B3AE',

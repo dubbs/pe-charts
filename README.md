@@ -1,51 +1,75 @@
 # PE-Chart
 
-This library creates a Highchart from an HTML table:
+This library employs techniques of [progressive enhancement](http://alistapart.com/article/understandingprogressiveenhancement) to ensure that all users can enjoy your data, whether it be a nice [Highchart](http://www.highcharts.com/) or just numbers!
 
-	<table data-chart-id="chart-1" data-chart-type="line|bar|column|column_stacked">
+## Installation
+
+Dependencies are managed with the [bower](http://bower.io/) package manager.
+
+	bower install
+
+## Usage
+
+You start out with a table, lets say Apple Inc.'s revenue
+
+	<table>
 		<caption>
-			<p data-yaxis-title>Chart Title</p>
+			<p>Revenue in Billions</p>
+		</caption>
+		<thead>
+			<tr>
+				<th></th>
+				<th>2011</th>
+				<th>2012</th>
+				<th>2013</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Apple</td>
+				<td>108.6</td>
+				<td>155.97</td>
+				<td>170.87</td>
+			</tr>
+		</tbody>
+	</table>
+
+Then add data-attributes so the plugin knows what type of data you would like to display
+
+	<table data-chart-type="column">
+		<caption>
+			<p data-yaxis-title>Revenue in Billions</p>
 		</caption>
 		<thead>
 			<tr data-categories>
 				<th data-ignore></th>
-				<th>Group 1</th>
-				<th>Group 2</th>
-				<th>Group 3</th>
+				<th>2011</th>
+				<th>2012</th>
+				<th>2013</th>
 			</tr>
 		</thead>
-		<tfoot>
-			<tr>
-				<td colspan="4" data-footnote>Source: Wikipedia</td>
-			</tr>
-		</tfoot>
 		<tbody>
 			<tr data-series>
-				<td data-series-name>Series 1</td>
-				<td>971</td>
-				<td>3492</td>
-				<td>8825</td>
-			</tr>
-			<tr data-series>
-				<td data-series-name>Series 2</td>
-				<td>4739</td>
-				<td>6593</td>
-				<td>9618</td>
+				<td data-series-name>Apple</td>
+				<td>108.6</td>
+				<td>155.97</td>
+				<td>170.87</td>
 			</tr>
 		</tbody>
 	</table>
-	
-Include the required js files:
 
-	<script src="../bower_components/jquery/jquery.js"></script>
-	<script src="../bower_components/highcharts/highcharts.src.js"></script>
-	<script src="../app.js"></script>
-	
-Initialize a new instance:
+Lastly, add any further customization and initialize the plugin
 
-	var chart = new PEChart({
-		el: $('table')
+	$('table').pechart({
+		all: {
+			colors: [
+				'#B5B3AE',
+				'#005A9C',
+				'#FFFFFF'
+			]
+		}
 	});
-
+		
+Here's a full featured [demo](examples/apple_revenue.html), to help you get started.
 
 

@@ -81,44 +81,27 @@
   </tbody>
 </table>
 
-<script src="../bower_components/jquery/jquery.js"></script>
-<script src="../bower_components/highcharts/index.js"></script>
-<script src="../app.js"></script>
+<script src="../bower_components/jquery/dist/jquery.js"></script>
+<script src="../bower_components/highcharts-release/highcharts.js"></script>
+<script src="../pechart.js"></script>
 <script>
-$('[data-chart-id]').each(function() {
-  var chart = new PEChart({
-    el: $(this),
-    config: {
-      all: {
-        colors: [
-          '#B5B3AE',
-          '#005A9C',
-          '#FFFFFF'
-        ],
-        xAxis: {
-          lineColor: '#000000',
-          tickWidth: 0
-        },
-        yAxis: {
-          title: {
-            enabled: false
-          }
-        },
-      },
-      line: {
-        yAxis: {
-          gridLineWidth: 0
-        }
-      },
-      column_stacked: {
-        yAxis: {
-          stackLabels: {
-            enabled: true
-          }
-        }
+$('[data-chart-id]').pechart({
+  all: {
+    colors: [
+      '#B5B3AE',
+      '#005A9C',
+      '#FFFFFF'
+    ],
+    xAxis: {
+      lineColor: '#000000',
+      tickWidth: 0
+    },
+    yAxis: {
+      title: {
+        enabled: true
       }
     }
-  });
+  }
 });
 </script>
 </body>

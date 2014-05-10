@@ -1,6 +1,6 @@
 {
   "name": "pe-charts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "authors": [
     "Kevin Warrington <kevin.warrington@gmail.com>"
   ],
@@ -8,7 +8,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "jquery": "~2.0.3",
-    "highcharts": "http://code.highcharts.com/3.0.10/highcharts.js"
+    "jquery": "~2.1.1",
+    "highcharts-release": "~4.0.1"
   }
 }
