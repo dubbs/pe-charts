@@ -72,4 +72,35 @@ Lastly, add any further customization and initialize the plugin
 		
 Here's a full featured [demo](examples/apple_revenue.html), to help you get started.
 
+## Data Attributes
+
+	table[data-chart-id] // set id of chart wrapper element
+    table[data-chart-type] // set chart type, line|column_stacked|column|bar|pie
+    table[data-hide-legend] // turn off legend
+    
+    *[data-yaxis-title] // set yaxis title
+    *[data-categories] // set children within this element as categories
+    *[data-ignore] // set category to be ignored
+    *[data-series] // set children within this element as series data
+    *[data-series-name] // set as current series name
+    *[data-footnote] // set highcharts credit text
+    
+
+## Chart Config
+
+There are six groups of config, which are fed directly into highcharts.
+
+One for all chart types:
+
+	all: {}
+
+One for each chart type:
+
+    line: {},
+    column: {},
+    column_stacked: {},
+    bar: {},
+    pie: {}
+
+
 
