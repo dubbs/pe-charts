@@ -6,7 +6,6 @@
   ],
   "description": "Generating HighCharts from HTML tables",
   "license": "MIT",
-  "private": false,
   "dependencies": {
     "jquery": "~2.1.1",
     "highcharts-release": "~4.0.1"
