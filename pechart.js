@@ -102,6 +102,8 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options = this.loadSeriesData(options, chartType);
     options = this.loadYAxisTitle(options);
     options = this.loadCreditsData(options);
+    options = this.loadChartTitle(options);
+    options = this.loadChartSubTitle(options);
     options = this.adjustSpacing(options);
     options = this.adjustHeight(options);
     options = this.adjustLegend(options);
@@ -147,6 +149,18 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options.yAxis = options.yAxis || {};
     options.yAxis.title = options.yAxis.title || {};
     options.yAxis.title.text = this.$el.find('[data-yaxis-title]').text();
+    return options;
+  };
+
+  PEChart.prototype.loadChartTitle = function(options) {
+    options.title = options.title || {};
+    options.title.text = this.$el.find('[data-chart-title]').text();
+    return options;
+  };
+
+  PEChart.prototype.loadChartSubTitle = function(options) {
+    options.subtitle = options.subtitle || {};
+    options.subtitle.text = this.$el.find('[data-chart-subtitle]').text();
     return options;
   };
 

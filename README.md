@@ -71,6 +71,8 @@ table[data-chart-id] { // set id of chart wrapper element }
 table[data-chart-type] { // set chart type, line|column_stacked|column|bar|pie }
 table[data-hide-legend] { // turn off legend }
 
+*[data-chart-title] { // set chart title }
+*[data-chart-subtitle] { // set chart subtitle }
 *[data-yaxis-title] { // set yaxis title }
 *[data-categories] { // set children within this element as categories }
 *[data-ignore] { // set category to be ignored }
