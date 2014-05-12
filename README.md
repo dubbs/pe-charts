@@ -1,4 +1,4 @@
-# PE-Chart
+# pe-charts
 
 This library employs techniques of [progressive enhancement](http://alistapart.com/article/understandingprogressiveenhancement) to ensure that all users can enjoy your data, whether it be a nice [Highchart](http://www.highcharts.com/) or just numbers!
 
