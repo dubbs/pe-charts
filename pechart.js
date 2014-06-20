@@ -127,7 +127,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
   };
 
   PEChart.prototype.adjustHeight = function (options) {
-    options.chart.height = this.$el.data('height');
+    options.chart.height = options.chart.height || this.$el.data('height');
     return options;
   };
 
