@@ -101,9 +101,13 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options = this.loadCategoryData(options);
     options = this.loadSeriesData(options, chartType);
     options = this.loadYAxisTitle(options);
+    options = this.loadYAxisMin(options);
     options = this.loadCreditsData(options);
     options = this.loadChartTitle(options);
     options = this.loadChartSubTitle(options);
+
+    options = this.adjustXAxisTickInterval(options);
+    options = this.adjustZoom(options);
     options = this.adjustSpacing(options);
     options = this.adjustHeight(options);
     options = this.adjustLegend(options);
@@ -115,6 +119,14 @@ var PEChart = (function ($, baseConfig, userConfig) {
 
   PEChart.prototype.hideTable = function () {
     this.$el.hide();
+  };
+
+  PEChart.prototype.adjustXAxisTickInterval = function (options) {
+    var xAxisInterval = this.$el.attr('data-xaxis-interval');
+    if (xAxisInterval !== undefined) {
+      options.xAxis.tickInterval = xAxisInterval;
+    }
+    return options;
   };
 
   PEChart.prototype.adjustColumnColoring = function (options) {
@@ -139,6 +151,19 @@ var PEChart = (function ($, baseConfig, userConfig) {
     return options;
   };
 
+  PEChart.prototype.adjustZoom = function (options) {
+    var zoomLast = this.$el.attr('data-zoom-last');
+    if (zoomLast !== undefined) {
+      options.chart.zoomType = 'x';
+      options.chart.events = options.chart.events || {};
+      options.chart.events.load = function () {
+        this.xAxis[0].setExtremes(this.xAxis[0].max - zoomLast, this.xAxis[0].max);
+        this.showResetZoom();
+      };
+    }
+    return options;
+  };
+
   PEChart.prototype.adjustSpacing = function (options) {
     options.legend.y = options.series.length * 15 + 10;
     options.chart.spacingBottom = options.series.length * 15 + 50;
@@ -149,6 +174,12 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options.yAxis = options.yAxis || {};
     options.yAxis.title = options.yAxis.title || {};
     options.yAxis.title.text = this.$el.find('[data-yaxis-title]').text();
+    return options;
+  };
+
+  PEChart.prototype.loadYAxisMin = function (options) {
+    options.yAxis = options.yAxis || {};
+    options.yAxis.min = this.$el.attr('data-yaxis-min');
     return options;
   };
 
@@ -245,7 +276,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
 
 (function($){
 
-  $.fn.pechart = function(config) {  
+  $.fn.pechart = function(config) {
 
     return this.each(function() {
 

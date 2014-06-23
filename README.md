@@ -71,6 +71,8 @@ table[data-chart-id] { // set id of chart wrapper element }
 table[data-chart-type] { // set chart type, line|column_stacked|column|bar|pie }
 table[data-hide-legend] { // turn off legend }
 table[data-height] { // set chart height }
+table[data-yaxis-min] { // set yaxis min }
+table[data-xaxis-interval] { // set xaxis tick interval }
 
 *[data-chart-title] { // set chart title }
 *[data-chart-subtitle] { // set chart subtitle }
