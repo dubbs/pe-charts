@@ -20,6 +20,14 @@ var PEChartConfigBase = {
         align: 'left',
         x: 18
       }
+    },
+    yAxis: {
+      plotLines: [{
+        dashStyle: 'Dash',
+        width: 1,
+        color: '#ff0000',
+        zIndex: 3
+      }]
     }
   },
   line: {
@@ -177,17 +185,11 @@ var PEChart = (function ($, baseConfig, userConfig) {
     var plotLineText = this.$el.attr('data-plot-line-text');
     var plotLineColor = this.$el.attr('data-plot-line-color');
     if (plotLineValue !== undefined) {
-      options.yAxis = options.yAxis || {};
-      options.yAxis.plotLines = options.yAxis.plotLines || [{
-        dashStyle: 'Dash',
-        color: plotLineColor,
-        width: 1,
-        value: Number(plotLineValue),
-        zIndex: 3,
-        label: {
-          text: plotLineText
-        }
-      }];
+      options.yAxis.plotLines[0].value = Number(plotLineValue);
+      options.yAxis.plotLines[0].label = {text: plotLineText};
+      if (plotLineColor) {
+        options.yAxis.plotLines[0].color = plotLineColor;
+      }
     }
     return options;
   };
