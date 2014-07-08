@@ -73,6 +73,9 @@ table[data-hide-legend] { // turn off legend }
 table[data-height] { // set chart height }
 table[data-yaxis-min] { // set yaxis min }
 table[data-xaxis-interval] { // set xaxis tick interval }
+table[data-plot-line-value] { // set plot line value }
+table[data-plot-line-text] { // set plot line text }
+table[data-plot-line-color] { // set plot line color }
 
 *[data-chart-title] { // set chart title }
 *[data-chart-subtitle] { // set chart subtitle }

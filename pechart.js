@@ -102,9 +102,11 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options = this.loadSeriesData(options, chartType);
     options = this.loadYAxisTitle(options);
     options = this.loadYAxisMin(options);
+    options = this.loadYAxisMax(options);
     options = this.loadCreditsData(options);
     options = this.loadChartTitle(options);
     options = this.loadChartSubTitle(options);
+    options = this.loadPlotLine(options);
 
     options = this.adjustXAxisTickInterval(options);
     options = this.adjustZoom(options);
@@ -170,6 +172,26 @@ var PEChart = (function ($, baseConfig, userConfig) {
     return options;
   };
 
+  PEChart.prototype.loadPlotLine = function(options) {
+    var plotLineValue = this.$el.attr('data-plot-line-value');
+    var plotLineText = this.$el.attr('data-plot-line-text');
+    var plotLineColor = this.$el.attr('data-plot-line-color');
+    if (plotLineValue !== undefined) {
+      options.yAxis = options.yAxis || {};
+      options.yAxis.plotLines = options.yAxis.plotLines || [{
+        dashStyle: 'Dash',
+        color: plotLineColor,
+        width: 1,
+        value: Number(plotLineValue),
+        zIndex: 3,
+        label: {
+          text: plotLineText
+        }
+      }];
+    }
+    return options;
+  };
+
   PEChart.prototype.loadYAxisTitle = function (options) {
     options.yAxis = options.yAxis || {};
     options.yAxis.title = options.yAxis.title || {};
@@ -180,6 +202,12 @@ var PEChart = (function ($, baseConfig, userConfig) {
   PEChart.prototype.loadYAxisMin = function (options) {
     options.yAxis = options.yAxis || {};
     options.yAxis.min = this.$el.attr('data-yaxis-min');
+    return options;
+  };
+
+  PEChart.prototype.loadYAxisMax = function (options) {
+    options.yAxis = options.yAxis || {};
+    options.yAxis.max = this.$el.attr('data-yaxis-max');
     return options;
   };
 
