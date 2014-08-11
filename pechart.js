@@ -216,7 +216,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
   
   PEChart.prototype.loadYAxisTickInterval = function (options) {
     options.yAxis = options.yAxis || {};
-    options.yAxis.tickInterval = (this.$el.attr('data-yaxis-interval').length > 0) ? parseInt(this.$el.attr('data-yaxis-interval')) : null;
+    options.yAxis.tickInterval = (this.$el.attr('data-yaxis-interval')) ? parseInt(this.$el.attr('data-yaxis-interval')) : null;
     return options;
   };
 
