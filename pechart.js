@@ -111,6 +111,7 @@ var PEChart = (function ($, baseConfig, userConfig) {
     options = this.loadYAxisTitle(options);
     options = this.loadYAxisMin(options);
     options = this.loadYAxisMax(options);
+    options = this.loadYAxisTickInterval(options);
     options = this.loadCreditsData(options);
     options = this.loadChartTitle(options);
     options = this.loadChartSubTitle(options);
@@ -210,6 +211,12 @@ var PEChart = (function ($, baseConfig, userConfig) {
   PEChart.prototype.loadYAxisMax = function (options) {
     options.yAxis = options.yAxis || {};
     options.yAxis.max = this.$el.attr('data-yaxis-max');
+    return options;
+  };
+  
+  PEChart.prototype.loadYAxisTickInterval = function (options) {
+    options.yAxis = options.yAxis || {};
+    options.yAxis.tickInterval = (this.$el.attr('data-yaxis-interval')) ? parseInt(this.$el.attr('data-yaxis-interval')) : null;
     return options;
   };
 
